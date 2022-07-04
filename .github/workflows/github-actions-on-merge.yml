@@ -1,20 +1,24 @@
 name: GitHub Actions Create staging PR when PR merged to development
 on:
-    push:
-        branches: ["main"]
+    pull_request_target:
+        branches:
+            - main
+        types:
+            - closed
 
 jobs:
-    pull-request:
+    if_merged:
+        if: github.event.pull_request.merged == true
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
             - name: pull-request
               uses: repo-sync/pull-request@v2
               with:
-                  source_branch: "${{ github.ref_name }}"
+                  source_branch: "${{ github.event.master_branch }}"
                   destination_branch: "staging"
-                  pr_title: "${{ github.ref_name }} to staging"
-                  pr_body: "Pulling ${{ github.ref_name }} to staging"
+                  pr_title: "${{ github.event.pull_request.title }} to staging"
+                  pr_body: "${{ github.event.pull_request.body }}"
                   pr_reviewer: "fabregus"
-                  pr_assignee: "fabregus"
+                  pr_assignee: "${{ github.event.pull_request.user.login }}"
                   github_token: ${{ secrets.GITHUB_TOKEN }}
