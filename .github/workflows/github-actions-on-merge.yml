@@ -4,18 +4,16 @@ on:
         branches: ["main"]
 
 jobs:
-    if_merged:
-        if: github.event.pull_request.merged == true
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - name: pull-request
-              uses: repo-sync/pull-request@v2
-              with:
-                  source_branch: "${{ github.ref_name }}"
-                  destination_branch: "staging"
-                  pr_title: "${{ github.ref_name }} to staging"
-                  pr_body: "Pulling ${{ github.ref_name }} to staging"
-                  pr_reviewer: "fabregus"
-                  pr_assignee: "fabregus"
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - name: pull-request
+          uses: repo-sync/pull-request@v2
+          with:
+              source_branch: "${{ github.ref_name }}"
+              destination_branch: "staging"
+              pr_title: "${{ github.ref_name }} to staging"
+              pr_body: "Pulling ${{ github.ref_name }} to staging"
+              pr_reviewer: "fabregus"
+              pr_assignee: "fabregus"
+              github_token: ${{ secrets.GITHUB_TOKEN }}
