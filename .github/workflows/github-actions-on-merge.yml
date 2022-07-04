@@ -1,10 +1,7 @@
 name: GitHub Actions Create staging PR when PR merged to development
 on:
-    pull_request_target:
-        branches:
-            - main
-        types:
-            - closed
+    push:
+        branches: ["main"]
 
 jobs:
     if_merged:
