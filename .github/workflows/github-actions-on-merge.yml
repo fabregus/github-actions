@@ -15,10 +15,10 @@ jobs:
             - name: pull-request
               uses: repo-sync/pull-request@v2
               with:
-                  source_branch: "${GITHUB_REF##*/}"
+                  source_branch: "${{ github.ref_name }}"
                   destination_branch: "staging"
-                  pr_title: "${GITHUB_REF##*/} to staging"
-                  pr_body: "Pulling ${GITHUB_REF##*/} to staging"
+                  pr_title: "${{ github.ref_name }} to staging"
+                  pr_body: "Pulling ${{ github.ref_name }} to staging"
                   pr_reviewer: "fabregus"
                   pr_assignee: "fabregus"
                   github_token: ${{ secrets.GITHUB_TOKEN }}
