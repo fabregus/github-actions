@@ -1,3 +1,3 @@
 # github-actions
 
-Check the github actions in action
+Check the github actions in action!
