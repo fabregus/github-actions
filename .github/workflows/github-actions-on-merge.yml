@@ -15,7 +15,7 @@ jobs:
             - name: pull-request
               uses: repo-sync/pull-request@v2
               with:
-                  source_branch: "${{ github.event.master_branch }}"
+                  source_branch: "${{ github.head_ref }}"
                   destination_branch: "staging"
                   pr_title: "${{ github.event.pull_request.title }} to staging"
                   pr_body: "${{ github.event.pull_request.body }}"
