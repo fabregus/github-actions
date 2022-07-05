@@ -22,3 +22,13 @@ jobs:
                   pr_reviewer: "fabregus"
                   pr_assignee: "${{ github.event.pull_request.user.login }}"
                   github_token: ${{ secrets.GITHUB_TOKEN }}
+    slackNotification:
+        name: Slack Notification
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Slack Notification
+              uses: rtCamp/action-slack-notify@v2
+              env:
+                  VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
+                  VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
