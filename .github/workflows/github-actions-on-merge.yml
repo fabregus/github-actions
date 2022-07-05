@@ -7,8 +7,8 @@ on:
             - closed
 
 jobs:
-    if_merged:
-        if: github.event.pull_request.merged == true
+    if_merged_and_website_branch:
+        if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'W[Ee][Bb]')
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
