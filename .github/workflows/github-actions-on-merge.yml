@@ -23,7 +23,7 @@ jobs:
                   pr_assignee: "${{ github.event.pull_request.user.login }}"
                   github_token: ${{ secrets.GITHUB_TOKEN }}
     slackNotification:
-        needs: if_merged_and_website_branch:
+        needs: if_merged_and_website_branch
         name: Slack Notification
         runs-on: ubuntu-latest
         steps:
